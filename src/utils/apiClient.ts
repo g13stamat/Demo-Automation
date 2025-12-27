@@ -1,8 +1,9 @@
-import fetch from 'node-fetch';
+// apiClient.ts
+import fetch from 'node-fetch'; // works with node-fetch@2 and esModuleInterop enabled
 
-export async function apiGet(url: string, token?: string) {
-  const headers: any = { 'Accept': 'application/json' };
+export async function apiGet(token: string): Promise<any> {
+  const headers: Record<string, string> = {};
   if (token) headers['Authorization'] = `Bearer ${token}`;
-  const res = await fetch(url, { headers });
+  const res = await fetch('https://api.example.com/data', { headers });
   return res.json();
 }
